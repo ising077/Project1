@@ -15,8 +15,18 @@ public class ReimbursementService {
 	@Autowired
 	ReimbursementRepository myReimbursement;
 	
-	public void createReimbursement(@RequestBody Reimbursement incomingReimbursement) {
+	public void createReimbursement(Reimbursement incomingReimbursement) {
 		myReimbursement.save(incomingReimbursement);
+	}
+
+	public void deleteReimbursement(Reimbursement incomingReimbursement){
+		myReimbursement.delete(incomingReimbursement);
+	}
+
+	public Reimbursement getReimbursement(int id)
+	{
+		Reimbursement test = myReimbursement.findById(id).get();
+		return test;
 	}
 	
 	

@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import com.reimbursement.exceptions.ProductNotfoundException;
+
 import com.reimbursement.models.Reimbursement;
 import com.reimbursement.repo.ReimbursementRepository;
 import com.reimbursement.services.ReimbursementService;
@@ -34,6 +34,8 @@ public class ReimbursementController {
 	
 	@Autowired
 	ReimbursementRepository myReimbursement;
+	@Autowired
+	ReimbursementService reimbursementService;
 	
 	@Autowired
 	RestTemplate restTemplate;
@@ -42,7 +44,7 @@ public class ReimbursementController {
 	// Employee enters "Pending" in application status
 	@PostMapping("/reimbursementrequest")
 	public void createReimbursement(@RequestBody Reimbursement incomingReimbursement) {
-		myReimbursement.save(incomingReimbursement);
+		reimbursementService.createReimbursement(incomingReimbursement);
 	}
 	
 // View all Reimbursements
@@ -67,7 +69,7 @@ public class ReimbursementController {
 			}
 			else
 			{
-			throw Exception
+				return null;
 			}
 			
 			
